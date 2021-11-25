@@ -14,7 +14,7 @@ node {
      }
    }
    stage('Test with a DB') {
-     def mysql = docker.image('mysql').run("-e MYSQL_ALLOW_EMPTY_PASSWORD=yes") 
+     def mysql = docker.image('mariadb').run("-e MYSQL_ALLOW_EMPTY_PASSWORD=yes") 
      def myTestContainer = docker.image('node')
      myTestContainer.pull()
      myTestContainer.inside("--link ${mysql.id}:mysql") { // using linking, mysql will be available at host: mysql, port: 3306
